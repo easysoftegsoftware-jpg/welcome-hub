@@ -5,4 +5,8 @@ export default defineConfig({
   plugins: [react()],
   server: { host: "::", port: 8080, strictPort: true },
   preview: { host: "::", port: 8080, strictPort: true },
+  esbuild: { loader: "jsx", include: /src\/.*\.jsx?$/, exclude: [] },
+  optimizeDeps: {
+    esbuildOptions: { loader: { ".js": "jsx" } },
+  },
 });
