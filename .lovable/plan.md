@@ -1,33 +1,45 @@
-## Landing Page: "Lumen" — AI-Powered Analytics SaaS
+# Switch template to Vite + React (CRA-compatible)
 
-A bold, dark-futuristic landing page for a fictional SaaS analytics product. We can rename/rebrand once you see it.
+Goal: make the Lovable preview run your existing admin dashboard (`src/App.js`, `src/pages/*`, react-router-dom v7, Bootstrap RTL) with as few code changes as possible.
 
-### Aesthetic direction
-- Dark theme with neon cyan + magenta accents over near-black background
-- Editorial display typography (Space Grotesk for headings, Inter for body)
-- Subtle grid backgrounds, glowing gradient orbs, layered glass cards
-- Smooth scroll-triggered animations via framer-motion
+## What changes
 
-### Sections (single landing route `/`)
-1. **Sticky nav** — logo, links (Features, Pricing, FAQ), CTA button
-2. **Hero** — oversized headline, subhead, dual CTAs, animated dashboard mockup
-3. **Logo cloud** — "Trusted by teams at..." (placeholder brand wordmarks)
-4. **Features grid** — 6 feature cards with icons (lucide-react), glow on hover
-5. **How it works** — 3-step process with numbered cards
-6. **Testimonials** — 3 quote cards with avatars
-7. **Pricing** — 3 tiers (Starter / Pro / Enterprise), Pro highlighted
-8. **FAQ** — accordion with 5–6 questions
-9. **CTA banner** — final conversion push
-10. **Footer** — columns of links, social icons, copyright
+1. **Remove TanStack Start scaffolding**
+   - Delete: `src/router.tsx`, `src/routes/` (entire folder including `__root.tsx`, `index.tsx`, generated `routeTree.gen.ts`), `src/server.ts`, `src/styles.css`, `src/components/landing/`, `wrangler.jsonc`, `.lovable/plan.md`.
+   - Remove TanStack/Cloudflare/Tailwind packages from `package.json`: `@tanstack/*`, `@cloudflare/*`, `@lovable.dev/vite-tanstack-config`, `tailwindcss`, `@tailwindcss/vite`, `framer-motion`, shadcn deps that aren't used by your code.
 
-### Technical plan
-- Update `src/styles.css` design tokens: dark-first palette, neon accents, gradient and glow tokens, custom font imports
-- Replace `src/routes/index.tsx` placeholder with real landing content; set proper `head()` SEO (title, description, og tags)
-- Create components in `src/components/landing/`:
-  - `Navbar.tsx`, `Hero.tsx`, `LogoCloud.tsx`, `Features.tsx`, `HowItWorks.tsx`, `Testimonials.tsx`, `Pricing.tsx`, `FAQ.tsx`, `CTA.tsx`, `Footer.tsx`
-- Use existing shadcn primitives (`button`, `card`, `accordion`, `badge`)
-- Install `framer-motion` for entrance animations
-- Apply dark mode by default (add `dark` class to html in `__root.tsx`)
-- Fully responsive (mobile-first); single H1 in hero; semantic HTML
+2. **Set up Vite + React (replacing react-scripts)**
+   - New `vite.config.ts` with `@vitejs/plugin-react`, dev server on the sandbox host/port that Lovable's preview expects (port 8080, host `::`, strictPort).
+   - New `index.html` at project root that mounts `<div id="root">` and loads `/src/index.js`.
+   - Keep `src/index.js` and `src/App.js` exactly as they are.
+   - Update `package.json` scripts: `dev`/`build`/`preview` using vite. Keep React 19, react-router-dom 7, axios, bootstrap, bootstrap-icons.
 
-No backend needed for v1 — all content is static. Buttons link to `#` placeholders ready for wiring later.
+3. **Keep your code untouched**
+   - `src/App.js`, all `src/pages/**`, `src/components/**`, `src/*.css`, `src/rest_api.js`, etc. stay as-is.
+   - Bootstrap RTL CSS and bootstrap-icons imports continue to work.
+
+4. **Note about your API**
+   - Your code calls `http://localhost:1150/api/...`. That host is your local machine — it won't be reachable from the Lovable preview sandbox. The UI will load, but API calls will fail until you either (a) expose your API publicly, or (b) point the frontend to a deployed backend. This isn't blocking the preview from rendering; just flagging it.
+
+## Technical details
+
+- `vite.config.ts`:
+  ```ts
+  import { defineConfig } from "vite";
+  import react from "@vitejs/plugin-react";
+  export default defineConfig({
+    plugins: [react()],
+    server: { host: "::", port: 8080, strictPort: true },
+    preview: { host: "::", port: 8080, strictPort: true },
+  });
+  ```
+- `index.html` includes `<script type="module" src="/src/index.js"></script>`.
+- `package.json` scripts: `"dev": "vite"`, `"build": "vite build"`, `"preview": "vite preview"`.
+- Routing: your existing `BrowserRouter` in `App.js` works on the preview (refresh/deep-link fallback handled by Vite dev middleware; for published builds we'll rely on the same SPA fallback).
+
+## Out of scope
+- No changes to your business logic, pages, or styles.
+- Not enabling Lovable Cloud / TanStack server functions / SSR.
+- Not migrating to Tailwind or shadcn.
+
+After you approve, I'll implement and verify the preview boots into your sign-in screen.
