@@ -1,0 +1,1 @@
+let urlApi = "https://medicalapi.easysofteg.com:56668/"
