@@ -139,11 +139,13 @@ const App = ()=>{
 						</>
 						:
 
-						<Route path="/" element={<Navigate to="/signin" replace />} />
-						<Route path="/login" element={<Navigate to="/signin" replace />} />
-						<Route path="/signin">
-							<Route index element={<Signin />} />
-						</Route>
+						<>
+							<Route path="/" element={<Navigate to="/signin" replace />} />
+							<Route path="/login" element={<Navigate to="/signin" replace />} />
+							<Route path="/signin">
+								<Route index element={<Signin />} />
+							</Route>
+						</>
 
 					}
 
