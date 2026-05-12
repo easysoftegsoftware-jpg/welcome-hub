@@ -7,7 +7,7 @@ import "./style.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import { createContext, useEffect, useState } from "react";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Modules from "./pages/modules/Modules.js";
 import AddEditModule from "./pages/modules/components/AddEdit.js";
 import Signin from "./pages/login/Signin.js";
@@ -56,7 +56,7 @@ const App = ()=>{
 		})
 		.catch(err => {
 			setAuth(false)
-			if(window.location.pathname !== "/signin"){
+			if(!["/signin", "/login"].includes(window.location.pathname)){
 				window.location.assign("/signin")
 			}
 			setLoading(false)
@@ -139,6 +139,8 @@ const App = ()=>{
 						</>
 						:
 
+						<Route path="/" element={<Navigate to="/signin" replace />} />
+						<Route path="/login" element={<Navigate to="/signin" replace />} />
 						<Route path="/signin">
 							<Route index element={<Signin />} />
 						</Route>
