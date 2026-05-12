@@ -286,7 +286,8 @@ summary::before{
   --indigo-500:#6366f1;
   --gradient-primary:linear-gradient(135deg,#3b82f6,#6366f1);
   --gradient-soft:linear-gradient(135deg,rgba(59,130,246,.12),rgba(99,102,241,.12));
-  --lv-bg:#f4f6fb;
+  --lv-bg:#ffffff;
+  --lv-bg-soft:#f8fafc;
   --lv-card:#ffffff;
   --lv-border:#e6e9f2;
   --lv-text:#0f172a;
@@ -631,3 +632,58 @@ main.col-md-9 > div > form{
 
 /* RTL pagination tweak */
 .table_choose_staff_next_prev{ display:none !important; }
+
+/* === Responsive improvements === */
+.lv-card{ overflow: hidden; }
+.lv-card .table-responsive{ overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.lv-card-header{ padding: 1rem; }
+.lv-card-header h3{ font-size: 1rem; }
+.lv-search{ max-width: 100%; width: 100%; }
+
+main.col-md-9{ background: var(--lv-bg); }
+header.navbar.bg-white{ background:#fff !important; }
+
+/* Mobile: full-width stacked content, sidebar as drawer */
+@media (max-width: 767.98px){
+  main.col-md-9{ padding: .75rem !important; width: 100% !important; }
+  header.width_header_content{ width: 100% !important; padding: .5rem .75rem !important; }
+  .lv-card{ margin-top: .75rem; border-radius: 12px; }
+  .lv-card-header{ flex-direction: column; align-items: stretch; gap: .75rem; padding: .9rem; }
+  .lv-card-header h3{ font-size: .95rem; }
+  .lv-card .table thead tr th{ padding: .6rem .55rem !important; font-size: .65rem !important; }
+  .lv-card .table tbody td{ padding: .6rem .55rem !important; font-size: .82rem; }
+  .lv-icon-btn{ width: 30px; height: 30px; }
+  .lv-icon-btn i{ font-size: .85rem; }
+  .lv-pagination{ padding: .6rem .9rem .9rem; gap: .35rem; flex-wrap: wrap; }
+  .lv-pagination button{ width: 32px; height: 32px; }
+  .lv-signin-card{ padding: 1.75rem 1.25rem; }
+  main.col-md-9 > form,
+  main.col-md-9 > div > form{ padding: 1rem !important; }
+  nav.navbar_dashboard{ width: 80% !important; max-width: 280px; box-shadow: 0 12px 40px rgba(0,0,0,.4); }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991.98px){
+  main.col-md-9{ padding: 1rem !important; }
+  .lv-card-header{ padding: 1rem 1.1rem; }
+  .lv-card .table thead tr th{ padding: .7rem .75rem !important; font-size: .68rem !important; }
+  .lv-card .table tbody td{ padding: .7rem .75rem !important; }
+  .width_sidebar{ width: 220px; }
+  .width_header_content{ width: calc(100% - 220px); }
+}
+
+/* Make tables fluid inside cards */
+.lv-card > .table-responsive,
+.lv-card > div > .table-responsive{ width: 100%; }
+
+/* Forms responsive */
+.form_data_date, .autofill_data_client{ flex-wrap: wrap; }
+.form_data_date > *, .autofill_data_client > *{ min-width: 0; }
+
+img, svg{ max-width: 100%; height: auto; }
+
+/* Inputs full width on small screens */
+@media (max-width: 575.98px){
+  input, select, textarea{ font-size: 16px !important; } /* prevent iOS zoom */
+  .btn{ font-size: .9rem; }
+}
