@@ -286,7 +286,8 @@ summary::before{
   --indigo-500:#6366f1;
   --gradient-primary:linear-gradient(135deg,#3b82f6,#6366f1);
   --gradient-soft:linear-gradient(135deg,rgba(59,130,246,.12),rgba(99,102,241,.12));
-  --lv-bg:#f4f6fb;
+  --lv-bg:#ffffff;
+  --lv-bg-soft:#f8fafc;
   --lv-card:#ffffff;
   --lv-border:#e6e9f2;
   --lv-text:#0f172a;
