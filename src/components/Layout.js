@@ -1,12 +1,15 @@
 import bootstrapMin from "bootstrap/dist/js/bootstrap.min";
 import React, { useEffect, useState } from "react";
-import {Outlet , Link} from "react-router-dom";
+import {Outlet , Link, useLocation} from "react-router-dom";
 import { roles } from "../roles";
 
 export default function Layout(){
 	const [staffName, setStaffName] = useState(window.localStorage.getItem("staff_name"));
 	const [staffType, setStaffType] = useState(window.localStorage.getItem("staff_type"));
 	let getRole = roles.filter(role => role.roleID === staffType)[0]
+	const location = useLocation();
+	const isActive = (path) => location.pathname === path || location.pathname.startsWith(path + "/");
+	const linkCls = (path) => `d-flex align-items-center nav-link ${isActive(path) ? "lv-active" : ""}`;
 
 	let [openSideBar, setOpenSideBar] = useState(false)
 	let [openProfileMenu, setOpenProfileMenu] = useState(false)
