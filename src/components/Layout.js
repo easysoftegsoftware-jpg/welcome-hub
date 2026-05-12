@@ -77,25 +77,25 @@ export default function Layout(){
 								<ul className="nav-item flex-column dropdown_menu_navbar" id="alert_drop_menu" style={{display: "none"}}>
 									{(getRole.view_all || getRole.path_allow.includes("/tech_appointment")) &&
 										<li className="dropdown-item">
-											<Link className="d-flex align-items-center nav-link" to="/tech_appointment">
+											<Link className={linkCls("/tech_appointment")} to="/tech_appointment">
 												مواعيد الدعم الفني 
 											</Link>
 										</li>}
 									{(getRole.view_all || getRole.path_allow.includes("/contract_less")) &&
 										<li className="dropdown-item">
-											<Link className="d-flex align-items-center nav-link" to="/contract_less">
+											<Link className={linkCls("/contract_less")} to="/contract_less">
 												عملاء بدون عقود صيانة 
 											</Link>
 										</li>}
 									{(getRole.view_all || getRole.path_allow.includes("/visit_less")) &&
 										<li className="dropdown-item">
-											<Link className="d-flex align-items-center nav-link" to="/visit_less">
+											<Link className={linkCls("/visit_less")} to="/visit_less">
 												عملاء انتهت عدد زياراتهم 
 											</Link>
 										</li>}
 									{(getRole.view_all || getRole.path_allow.includes("/almost_end")) &&
 										<li className="dropdown-item">
-											<Link className="d-flex align-items-center nav-link" to="/almost_end">
+											<Link className={linkCls("/almost_end")} to="/almost_end">
 												عقود قاربت على الانتهاء 
 											</Link>
 										</li>}
@@ -107,49 +107,49 @@ export default function Layout(){
 								</ul>
 								{(getRole.view_all || getRole.path_allow.includes("/modules")) &&
 									<li className="nav-item">
-										<Link className="d-flex align-items-center nav-link" to="/modules">
+										<Link className={linkCls("/modules")} to="/modules">
 											<i className="bi bi-boxes"></i>
 											<span> القوائم </span>
 										</Link>
 									</li>}
 								{(getRole.view_all || getRole.path_allow.includes("/agents")) &&
 									<li className="nav-item">
-										<Link className="d-flex align-items-center nav-link" to="/agents">
+										<Link className={linkCls("/agents")} to="/agents">
 											<i className="bi bi-database"></i>
 											<span> بيانات الوكلاء </span>
 										</Link>
 									</li>}
 								{(getRole.view_all || getRole.path_allow.includes("/clients")) &&
 									<li className="nav-item">
-										<Link className="d-flex align-items-center nav-link" to="/clients">
+										<Link className={linkCls("/clients")} to="/clients">
 											<i className="bi bi-people-fill"></i>
 											<span> بيانات العملاء </span>
 										</Link>
 									</li>}
 								{(getRole.view_all || getRole.path_allow.includes("/staff")) &&
 									<li className="nav-item">
-										<Link className="d-flex align-items-center nav-link" to="/staff">
+										<Link className={linkCls("/staff")} to="/staff">
 											<i className="bi bi-person-vcard-fill"></i>
 											<span> بيانات الموظفين </span>
 										</Link>
 									</li>}
 								{(getRole.view_all || getRole.path_allow.includes("/appointments")) &&
 									<li className="nav-item">
-										<Link className="d-flex align-items-center nav-link" to="/appointments">
+										<Link className={linkCls("/appointments")} to="/appointments">
 											<i className="bi bi-calendar-week-fill"></i>
 											<span> المواعيد </span>
 										</Link>
 									</li>}
 								{(getRole.view_all || getRole.path_allow.includes("/visits")) &&
 									<li className="nav-item">
-										<Link className="d-flex align-items-center nav-link" to="/visits">
+										<Link className={linkCls("/visits")} to="/visits">
 											<i className="bi bi-person-walking"></i>
 											<span> الزيارات </span>
 										</Link>
 									</li>}
 								{(getRole.view_all || getRole.path_allow.includes("/contracts")) &&
 									<li className="nav-item">
-										<Link className="d-flex align-items-center nav-link" to="/contracts">
+										<Link className={linkCls("/contracts")} to="/contracts">
 											<i className="bi bi-tools"></i>
 											<span> عقود الصيانة </span>
 										</Link>
@@ -160,13 +160,13 @@ export default function Layout(){
 									</h5>
 								</li>
 								<li className="nav-item">
-									<Link className="d-flex align-items-center nav-link" to="/visits_clients">
+									<Link className={linkCls("/visits_clients")} to="/visits_clients">
 										<i className="bi bi-arrow-down-up"></i>
 										<span> زيارات العملاء </span>
 									</Link>
 								</li>
 								<li className="nav-item">
-									<Link className="d-flex align-items-center nav-link" to="/total_clients_traffic">
+									<Link className={linkCls("/total_clients_traffic")} to="/total_clients_traffic">
 										<i className="bi bi-file-earmark-text-fill"></i>
 										<span> إجمالي حركة العملاء </span>
 									</Link>
