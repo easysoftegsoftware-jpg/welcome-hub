@@ -43,39 +43,34 @@ const Signin = ()=>{
         
     }
     return(
-    <main className="form-signin col-12 d-flex justify-content-center align-items-center h-full-vh">
-        <form id="form_signin" className="border rounded-4 p-4 col-10 col-sm-8 col-md-6 col-xl-4 bg-white">
-            <div className="mb-4 d-flex align-items-center justify-content-center ">
-                <img className="" src="./media/icons/icon_logo.ico" alt="" width="150" height="150" />
+    <main className="lv-signin-bg">
+        <form id="form_signin" className="lv-signin-card">
+            <div className="mb-4 d-flex align-items-center justify-content-center">
+                <img src="./media/icons/icon_logo.ico" alt="" width="120" height="120" />
             </div>
 
+            <h2 className="text-center fw-bold mb-1" style={{color:"#0f172a"}}>مرحبا بعودتك</h2>
+            <p className="text-center text-muted mb-4" style={{fontSize:".9rem"}}>سجّل دخولك للمتابعة</p>
+
             <div className="text-danger pb-2 text-center fw-bold">{handleErr}</div>
-            
+
             <div className="py-2">
                 <label htmlFor="floatingInput" className="pb-2 fw-bolder">
                     أسم المستخدم
                     {errorInputs.map(ele => ele.name === "StaffName" && <span className="text-danger fw-medium px-4">* {ele.errMsg}</span>)}
-
                 </label>
                 <input type="text" className={`form-control ${errorInputs.filter(input => input.name === "StaffName").length > 0 ? "border-danger":""}`} onChange={(e)=>setDataLogin(state => {return {...state, StaffName: e.target.value}})} value={dataLogin.StaffName} id="floatingInput" />
             </div>
             <div className="py-2">
                 <label htmlFor="floatingPassword" className="pb-2 fw-bolder">
                     كلمة المرور
-                    
                     {errorInputs.map(ele => ele.name === "Password" && <span className="text-danger fw-medium px-4">* {ele.errMsg}</span>)}
                 </label>
                 <input type="password" onKeyUp={(e)=>{e.key === "Enter" && handleSubmitLogin()}} className={`form-control ${errorInputs.filter(input => input.name === "Password").length > 0 ? "border-danger":""}`} onChange={(e)=>setDataLogin(state => {return {...state, Password: e.target.value}})} value={dataLogin.Password} id="floatingPassword" />
             </div>
 
-            {/* <div className="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me" />
-                    <span> تذكرني دائماَ</span>
-                </label>
-            </div> */}
-            <button className="w-100 btn btn-md btn-primary mt-2" type="button" onClick={handleSubmitLogin}>تسجيل دخول</button>
-            <p className="mt-5 mb-3 text-muted text-center">&copy; 2004 - 2025</p>
+            <button className="w-100 lv-btn-primary justify-content-center mt-3" style={{padding:".7rem"}} type="button" onClick={handleSubmitLogin}>تسجيل دخول</button>
+            <p className="mt-4 mb-0 text-muted text-center" style={{fontSize:".8rem"}}>&copy; 2004 - 2025</p>
         </form>
     </main>
         
