@@ -63,8 +63,8 @@ export default function Layout(){
 						<div className="position-sticky overflow-auto h-100"  style={{backgroundColor: 'white', borderLeft: "1px solid #e4e7ec"}}>
 							<ul className="nav flex-column flex-nowrap pt-3 h-100">
 								<li className="">
-									<Link className="nav-link active d-none d-md-flex justify-content-center" aria-current="page" to="#">
-                    					<img className="" src="/media/icons/icon_logo.ico" alt="" width="130" height="100" />
+									<Link className="nav-link active d-none d-md-flex justify-content-center" aria-current="page" to="#" style={{backgroundColor: "#ffffff", padding: "12px"}}>
+										<img src="/media/icons/easy_soft_logo.png" alt="Easy Soft" style={{maxWidth: "160px", height: "auto", objectFit: "contain", backgroundColor: "#ffffff"}} />
 									</Link>
 								</li>
 								<li className="nav-item">
