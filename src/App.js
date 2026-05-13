@@ -49,6 +49,12 @@ const App = ()=>{
 	let	[auth, setAuth] = useState(false);
 	let getRoleId = localStorage.getItem("staff_type");
 	useEffect(()=>{
+		if(["/signin", "/login"].includes(window.location.pathname)){
+			setAuth(false);
+			setLoading(false);
+			return;
+		}
+
 		makeRequestApi("http://localhost:1150/api/Codes/Staffs", "GET")
 		.then(res => {
 			setAuth(true);
@@ -56,6 +62,7 @@ const App = ()=>{
 		})
 		.catch(err => {
 			setAuth(false)
+			window.localStorage.removeItem("token_auth");
 			if(!["/signin", "/login"].includes(window.location.pathname)){
 				window.location.assign("/signin")
 			}
