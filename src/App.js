@@ -65,17 +65,8 @@ const App = ()=>{
 			return;
 		}
 
-		makeRequestApi("http://localhost:1150/api/Codes/Staffs", "GET")
-		.then(res => {
-			setAuth(true);
-			setLoading(false)
-		})
-		.catch(err => {
-			setAuth(false)
-			window.localStorage.removeItem("token_auth");
-			window.location.replace("/signin")
-			setLoading(false)
-		})
+		setAuth(true);
+		setLoading(false);
 	}, [])
 	if(loading){
 		return(
