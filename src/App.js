@@ -49,9 +49,19 @@ const App = ()=>{
 	let	[auth, setAuth] = useState(false);
 	let getRoleId = localStorage.getItem("staff_type");
 	useEffect(()=>{
-		if(["/signin", "/login"].includes(window.location.pathname)){
+		const isPublicAuthRoute = ["/signin", "/login"].includes(window.location.pathname);
+		const token = window.localStorage.getItem("token_auth");
+
+		if(isPublicAuthRoute){
 			setAuth(false);
 			setLoading(false);
+			return;
+		}
+
+		if(!token){
+			setAuth(false);
+			setLoading(false);
+			window.location.replace("/signin");
 			return;
 		}
 
@@ -63,9 +73,7 @@ const App = ()=>{
 		.catch(err => {
 			setAuth(false)
 			window.localStorage.removeItem("token_auth");
-			if(!["/signin", "/login"].includes(window.location.pathname)){
-				window.location.assign("/signin")
-			}
+			window.location.replace("/signin")
 			setLoading(false)
 		})
 	}, [])
