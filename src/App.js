@@ -6,40 +6,39 @@ import "./style.css";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, lazy, Suspense, useEffect, useState } from "react";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
-import Modules from "./pages/modules/Modules.js";
-import AddEditModule from "./pages/modules/components/AddEdit.js";
-import Signin from "./pages/login/Signin.js";
 import Layout from "./components/Layout.js";
-
-import Clients from "./pages/clients/Client.js";
-import AddEditClients from "./pages/clients/components/AddEdit.js";
-
-import Appointments from "./pages/appointments/Appointments.js";
-import AddEditAppointment from "./pages/appointments/components/AddEdit.js";
-
-import Visits from "./pages/visits/Visits.js";
-import AddEditVisit from "./pages/visits/components/AddEdit.js";
-
-import Agents from "./pages/agents/Agents.js";
-import AddEditAgent from "./pages/agents/components/AddEdit.js";
-
-import Staff from "./pages/staff/Staff.js";
-import AddEditStaff from "./pages/staff/components/AddEdit.js";
-
-import Contracts from "./pages/contracts/Contracts.js";
-import AddEditContract from "./pages/contracts/components/AddEdit.js";
-
-import VisitsClients from "./pages/visits_clients/VisitsClient.js";
-import TotalClientsTraffic from "./pages/total_clients_traffic/TotalClientsTraffic.js";
-import { makeRequestApi } from "./rest_api.js";
-import TechAppointment from "./pages/alert/components/Tech_Appointment.js";
-import ReviewVisits from "./pages/alert/components/Review_Visits.js";
-import ContractLess from "./pages/alert/components/Contract_Less.js";
-import VisitLess from "./pages/alert/components/Visit_Less.js";
-import AlmostEnd from "./pages/alert/components/AlmostEnd.js";
 import NotFoundPage from "./components/Not_Found.js";
+
+const Modules = lazy(() => import("./pages/modules/Modules.js"));
+const AddEditModule = lazy(() => import("./pages/modules/components/AddEdit.js"));
+const Signin = lazy(() => import("./pages/login/Signin.js"));
+
+const Clients = lazy(() => import("./pages/clients/Client.js"));
+const AddEditClients = lazy(() => import("./pages/clients/components/AddEdit.js"));
+
+const Appointments = lazy(() => import("./pages/appointments/Appointments.js"));
+const AddEditAppointment = lazy(() => import("./pages/appointments/components/AddEdit.js"));
+
+const Visits = lazy(() => import("./pages/visits/Visits.js"));
+const AddEditVisit = lazy(() => import("./pages/visits/components/AddEdit.js"));
+
+const Agents = lazy(() => import("./pages/agents/Agents.js"));
+const AddEditAgent = lazy(() => import("./pages/agents/components/AddEdit.js"));
+
+const Staff = lazy(() => import("./pages/staff/Staff.js"));
+const AddEditStaff = lazy(() => import("./pages/staff/components/AddEdit.js"));
+
+const Contracts = lazy(() => import("./pages/contracts/Contracts.js"));
+const AddEditContract = lazy(() => import("./pages/contracts/components/AddEdit.js"));
+
+const VisitsClients = lazy(() => import("./pages/visits_clients/VisitsClient.js"));
+const TotalClientsTraffic = lazy(() => import("./pages/total_clients_traffic/TotalClientsTraffic.js"));
+const TechAppointment = lazy(() => import("./pages/alert/components/Tech_Appointment.js"));
+const ContractLess = lazy(() => import("./pages/alert/components/Contract_Less.js"));
+const VisitLess = lazy(() => import("./pages/alert/components/Visit_Less.js"));
+const AlmostEnd = lazy(() => import("./pages/alert/components/AlmostEnd.js"));
 
 export const DataAppContext = createContext()
 
