@@ -44,6 +44,13 @@ export const DataAppContext = createContext()
 
 
 const App = ()=>{
+	const loader = (
+		<div className="text-center d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
+			<div className="spinner-border" role="status">
+				<span className="visually-hidden">Loading...</span>
+			</div>
+		</div>
+	);
 	let [loading, setLoading] = useState(true);
 	let	[auth, setAuth] = useState(false);
 	let getRoleId = localStorage.getItem("staff_type");
@@ -68,16 +75,11 @@ const App = ()=>{
 		setLoading(false);
 	}, [])
 	if(loading){
-		return(
-			<div className="text-center d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
-				<div className="spinner-border" role="status">
-					<span className="visually-hidden">Loading...</span>
-				</div>
-			</div>
-		)
+		return loader
 	}else{
 		return (
 			<BrowserRouter>
+				<Suspense fallback={loader}>
 				<Routes>
 					{auth ? 
 						<>
@@ -158,6 +160,7 @@ const App = ()=>{
 					<Route path="*" element={<NotFoundPage />} />
 
 				</Routes>
+				</Suspense>
 			</BrowserRouter>
 		  )
 	}
