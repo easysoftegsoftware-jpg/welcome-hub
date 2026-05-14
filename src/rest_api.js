@@ -7,6 +7,8 @@ export const makeRequestApi =  (url, method, body)=>{
     const getToken = window.localStorage.getItem("token_auth");
 
     url = url.replace("http://localhost:1150/","https://medicalapi.easysofteg.com:56668/")
-    myHeaders.append("Authorization",`Bearer ${getToken}`);
+    if(getToken){
+        myHeaders.append("Authorization",`Bearer ${getToken}`);
+    }
     return axios({url, method, headers: myHeaders, data: body});
 }
