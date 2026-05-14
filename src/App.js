@@ -67,7 +67,6 @@ const App = ()=>{
 		if(!token){
 			setAuth(false);
 			setLoading(false);
-			window.location.replace("/signin");
 			return;
 		}
 
