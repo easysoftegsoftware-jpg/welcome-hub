@@ -92,6 +92,7 @@ const App = ()=>{
 					{auth ? 
 						<>
 							<Route path="/" element={<Layout />}>
+								<Route index element={<Navigate to="/tech_appointment" replace />} />
 								{['1','2', '3', '4'].includes(getRoleId) && <Route path="tech_appointment" element={<TechAppointment />} />}	  
 								{['3', '4'].includes(getRoleId) && <Route path="contract_less" element={<ContractLess />} />}	  
 								{['3', '4'].includes(getRoleId) && <Route path="visit_less" element={<VisitLess />} />	}  
