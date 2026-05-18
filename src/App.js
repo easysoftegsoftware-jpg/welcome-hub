@@ -44,6 +44,7 @@ export const DataAppContext = createContext()
 
 
 const App = ()=>{
+	const validRoleIds = ['1', '2', '3', '4'];
 	const loader = (
 		<div className="text-center d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
 			<div className="spinner-border" role="status">
@@ -53,10 +54,11 @@ const App = ()=>{
 	);
 	let [loading, setLoading] = useState(true);
 	let	[auth, setAuth] = useState(false);
-	let getRoleId = localStorage.getItem("staff_type");
+	let getRoleId = String(localStorage.getItem("staff_type") || "").trim();
 	useEffect(()=>{
 		const isPublicAuthRoute = ["/signin", "/login"].includes(window.location.pathname);
 		const token = window.localStorage.getItem("token_auth");
+		const roleId = String(window.localStorage.getItem("staff_type") || "").trim();
 
 		if(isPublicAuthRoute){
 			setAuth(false);
@@ -64,7 +66,8 @@ const App = ()=>{
 			return;
 		}
 
-		if(!token){
+		if(!token || !validRoleIds.includes(roleId)){
+			window.localStorage.removeItem("token_auth");
 			setAuth(false);
 			setLoading(false);
 			return;
@@ -152,6 +155,7 @@ const App = ()=>{
 							<Route path="/signin">
 								<Route index element={<Signin />} />
 							</Route>
+						<Route path="*" element={<Navigate to="/signin" replace />} />
 						</>
 
 					}
