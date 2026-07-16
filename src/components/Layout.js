@@ -154,6 +154,13 @@ export default function Layout(){
 											<span> عقود الصيانة </span>
 										</Link>
 									</li>}
+								{(getRole.view_all || getRole.path_allow.includes("/modifications")) &&
+									<li className="nav-item">
+										<Link className={linkCls("/modifications")} to="/modifications">
+											<i className="bi bi-pencil-square"></i>
+											<span> طلبات التعديل </span>
+										</Link>
+									</li>}
 								<li className="nav-item nav_heading_items">
 									<h5 className="d-flex align-items-center nav-link">
 										التقرير

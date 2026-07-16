@@ -6,8 +6,8 @@
 // ]
 
 export const roles = [
-    {roleID: "1", path_allow: ["/tech_appointment", "/visits"], view_all: false},
-    {roleID: "2", path_allow: ["/tech_appointment", "/visits", "/appointments"], view_all: false},
+    {roleID: "1", path_allow: ["/tech_appointment", "/visits", "/modifications"], view_all: false},
+    {roleID: "2", path_allow: ["/tech_appointment", "/visits", "/appointments", "/modifications"], view_all: false},
     {roleID: "3", path_allow: [], view_all: true},
     {roleID: "4", path_allow: [], view_all: true},
 ]
