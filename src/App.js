@@ -36,6 +36,9 @@ const AddEditContract = lazy(() => import("./pages/contracts/components/AddEdit.
 const VisitsClients = lazy(() => import("./pages/visits_clients/VisitsClient.js"));
 const TotalClientsTraffic = lazy(() => import("./pages/total_clients_traffic/TotalClientsTraffic.js"));
 const TechAppointment = lazy(() => import("./pages/alert/components/Tech_Appointment.js"));
+const Modifications = lazy(() => import("./pages/modifications/Modifications.js"));
+const AddEditModification = lazy(() => import("./pages/modifications/components/AddEdit.js"));
+const ModificationDetails = lazy(() => import("./pages/modifications/Details.js"));
 const ContractLess = lazy(() => import("./pages/alert/components/Contract_Less.js"));
 const VisitLess = lazy(() => import("./pages/alert/components/Visit_Less.js"));
 const AlmostEnd = lazy(() => import("./pages/alert/components/AlmostEnd.js"));
@@ -137,6 +140,13 @@ const App = ()=>{
 								<Route index element={<Contracts />} />
 								<Route path="add" element={<AddEditContract />} />
 								<Route path="edit/:id" element={<AddEditContract />} />
+							</Route>}
+
+							{['1','2','3','4'].includes(getRoleId) && <Route path="/modifications" element={<Layout />}>
+								<Route index element={<Modifications />} />
+								<Route path="add" element={<AddEditModification />} />
+								<Route path="edit/:id" element={<AddEditModification />} />
+								<Route path="details/:id" element={<ModificationDetails />} />
 							</Route>}
 
 							{['1','2','3', '4'].includes(getRoleId) && <Route path="/visits_clients" element={<Layout />}>
